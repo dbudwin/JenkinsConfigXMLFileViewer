@@ -1,0 +1,52 @@
+// ==UserScript==
+// @name         Jenkins Config XML File Viewer
+// @namespace    http://budw.in/
+// @version      0.1
+// @description  Add a link to view the job's XML configuration file from the job's page.  This link is titled "View Config XML File."
+// @author       Drew Budwin
+// @match        http*://*/job/*
+// @require      https://code.jquery.com/jquery-2.2.1.js
+// @require      https://greasyfork.org/scripts/6250-waitforkeyelements/code/waitForKeyElements.js?version=23756
+// ==/UserScript==
+
+waitForKeyElements(".icon-folder.icon-xlg", hideUpdateBranchButton);
+
+function hideUpdateBranchButton()
+{
+    $('table').each(function()
+    {
+         mainTable = $(this);
+        
+        if ($(this).children().is(':contains("Workspace")'))
+        {
+            tableToPrependRowTo = $(mainTable);
+            var rowToAppend = '<tr><td>' + getConfigXMLFileLinkWithImage() + '</td><td style="vertical-align:middle">' + getConfigXMLFileLink() + '</td></tr>';
+            tableToPrependRowTo.prepend(rowToAppend);
+        }
+    });
+}
+
+function getConfigXMLFileLinkWithImage()
+{
+    return '<a href="' + getConfigXMLFileUrl() + '"><img src="' + getSettingIconUrl() + '"></a>';
+}
+
+function getConfigXMLFileLink()
+{
+    return '<a href="' + getConfigXMLFileUrl() + '">View Config XML File</a>';
+}
+
+function getConfigXMLFileUrl()
+{
+    return window.location.href + 'config.xml';
+}
+
+function getSettingIconUrl()
+{
+    var baseUrl = window.location.protocol + '//' + window.location.host;
+    var resourceLocation = $('head').attr('resURL') + '/';
+    var settingsIconName = 'images/48x48/setting.png';
+    var imageUrl = baseUrl + resourceLocation + settingsIconName;
+    
+    return imageUrl;
+}
