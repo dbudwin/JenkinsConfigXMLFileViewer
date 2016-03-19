@@ -4,8 +4,9 @@
 
 This user script is useful for accessing Jenkins configuration XML files more easily from a job's page.  A new link is added to the job page with the setting icon that says "View Config XML File."
 
-![Preview of added link on Jenkin's job page](https://github.com/dbudwin/JenkinsConfigXMLFileViewer/blob/master/images/jenkinspreview.png)
-*Screenshot from Jenkins showing a job page with the added link*
+>![Preview of added link on Jenkin's job page](https://github.com/dbudwin/JenkinsConfigXMLFileViewer/blob/master/images/jenkinspreview.png)
+
+>*Screenshot from Jenkins showing a job page with the added link*
 
 ## How to Install (Chrome & Firefox)
 
