@@ -1,0 +1,31 @@
+{
+  "name": "jenkinsconfigxmlfileviewer",
+  "description": "Greasemonkey script called \"Jenkins Config XML File Viewer\" to place a link to view the job's config.xml file.",
+  "version": "0.1.0",
+  "maintainers": [
+    {
+      "name": "Drew Budwin",
+      "email": "",
+      "web": "http://www.budw.in"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/dbudwin/JenkinsConfigXMLFileViewer/issues"
+  },
+  "repository": [
+    {
+      "type": "git",
+      "url": "https://github.com/dbudwin/JenkinsConfigXMLFileViewer"
+    }
+  ],
+  "homepage": "http://www.budw.in",
+  "devDependencies": {
+    "karma-firefox-launcher": "^0.1.7",
+    "jasmine-node": "^1.14.3"
+  },
+  "license": "GPL-3.0",
+  "scripts": {
+    "test": "jasmine-node spec"
+  },
+  "license": "GPL-3"
+}
