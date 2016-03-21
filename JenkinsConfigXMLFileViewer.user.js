@@ -1,29 +1,37 @@
 // ==UserScript==
 // @name         Jenkins Config XML File Viewer
 // @namespace    http://budw.in/
-// @version      0.1
+// @version      0.2
 // @description  Add a link to view the job's XML configuration file from the job's page.  This link is titled "View Config XML File."
 // @author       Drew Budwin
 // @match        http*://*/job/*
 // @require      https://code.jquery.com/jquery-2.2.1.js
 // @require      https://greasyfork.org/scripts/6250-waitforkeyelements/code/waitForKeyElements.js?version=23756
 // ==/UserScript==
+/* jshint -W097 */
+/* globals $:false */
+/* global waitForKeyElements */
+'use strict';
 
-waitForKeyElements(".icon-folder.icon-xlg", hideUpdateBranchButton);
+waitForKeyElements(".icon-folder.icon-xlg", addConfigXMLFileLinkWithImage);
 
-function hideUpdateBranchButton()
+function addConfigXMLFileLinkWithImage()
 {
     $('table').each(function()
     {
-         mainTable = $(this);
-        
-        if ($(this).children().is(':contains("Workspace")'))
+    	var tableToPrependRowTo = $(this);
+    
+        if (tableToPrependRowTo.children().is(':contains("Workspace")'))
         {
-            tableToPrependRowTo = $(mainTable);
-            var rowToAppend = '<tr><td>' + getConfigXMLFileLinkWithImage() + '</td><td style="vertical-align:middle">' + getConfigXMLFileLink() + '</td></tr>';
-            tableToPrependRowTo.prepend(rowToAppend);
+            var rowToPrepend = getRowWithLinkAndImage();
+            tableToPrependRowTo.prepend(rowToPrepend);
         }
     });
+}
+
+function getRowWithLinkAndImage()
+{
+	return '<tr><td>' + getConfigXMLFileLinkWithImage() + '</td><td style="vertical-align:middle">' + getConfigXMLFileLink() + '</td></tr>';
 }
 
 function getConfigXMLFileLinkWithImage()
